@@ -14,10 +14,10 @@ export class MapsComponent implements OnInit, OnChanges, OnDestroy
 {  
   @Input() selectedDestination: string = ""
   
-  center!: google.maps.LatLngLiteral
+  center: google.maps.LatLngLiteral = {lat: 0, lng: 0};
   markersArray: google.maps.LatLngLiteral[] = [];
   itinerarySubscription!: Subscription;
-  zoom:number = 5;
+  zoom: number = 5;
   
   private countriesStore = inject(CountriesStore);
   private mapService = inject(MapService);
@@ -25,20 +25,29 @@ export class MapsComponent implements OnInit, OnChanges, OnDestroy
   constructor() {}
 
   ngOnInit()
-  {      
+  { 
+    this.zoom = 5;     
     this.itinerarySubscription = this.mapService.itineraryObs$.subscribe((places) => 
     {
       // pass in place[] to markersArray
       this.markersArray = places; 
       const noOfPlaces = places.length
-      this.center = { lat: places[0].lat, lng: places[0].lng };
-      this.zoom = 10;
-
+      // this.center = { lat: places[0].lat, lng: places[0].lng };
+      
       if(noOfPlaces > 0)
       {
-        this.center = places[noOfPlaces - 1]
+        // this.center = places[noOfPlaces - 1]
+        this.center = { 
+          lat: places[noOfPlaces - 1].lat, 
+          lng: places[noOfPlaces - 1].lng 
+        };
+        this.zoom = 10;
       }
     });
+    if (this.selectedDestination) 
+    {
+      this.loadDestination();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void 
@@ -71,6 +80,12 @@ export class MapsComponent implements OnInit, OnChanges, OnDestroy
         console.log(`Map centered to ${country.name} at: `, this.center);
       }
     })
+    this.triggerMapRefresh(); // trigger after center is set
+  }
+
+  private triggerMapRefresh() 
+  {
+    this.center = { ...this.center };
   }
 
 }
