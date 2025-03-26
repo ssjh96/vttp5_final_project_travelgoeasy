@@ -17,6 +17,7 @@ export class MapsComponent implements OnInit, OnChanges, OnDestroy
   center!: google.maps.LatLngLiteral
   markersArray: google.maps.LatLngLiteral[] = [];
   itinerarySubscription!: Subscription;
+  zoom:number = 5;
   
   private countriesStore = inject(CountriesStore);
   private mapService = inject(MapService);
@@ -30,6 +31,8 @@ export class MapsComponent implements OnInit, OnChanges, OnDestroy
       // pass in place[] to markersArray
       this.markersArray = places; 
       const noOfPlaces = places.length
+      this.center = { lat: places[0].lat, lng: places[0].lng };
+      this.zoom = 10;
 
       if(noOfPlaces > 0)
       {
@@ -70,5 +73,6 @@ export class MapsComponent implements OnInit, OnChanges, OnDestroy
     })
   }
 
-
 }
+
+

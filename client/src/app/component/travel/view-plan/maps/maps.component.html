@@ -1,5 +1,5 @@
 <div class="container">
-  <google-map id="map"[center]="center" [zoom]="7" mapId="a81549240690331d" width="100%">
+  <google-map id="map"[center]="center" [zoom]="zoom" mapId="a81549240690331d" width="100%">
       @for (marker of markersArray; track marker) {
           <map-advanced-marker
             #marker="mapAdvancedMarker"
