@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit
   // Form submission
   protected onLogin(): void
   {
-    console.log(this.loginForm.value);
+    // console.log(this.loginForm.value);
     if(this.loginForm.valid)
     {
       const jwtRequest: JwtRequest = this.loginForm.value as JwtRequest;
