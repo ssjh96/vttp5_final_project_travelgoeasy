@@ -1,0 +1,43 @@
+<div class="success-container">
+    <mat-card>
+      <mat-card-content>
+        
+        @if (errorMessage) 
+        {
+            <div class="error-container">
+                <mat-icon class="error-icon">error</mat-icon>
+                <h2>Oops! Something went wrong</h2>
+                <p>{{ errorMessage | titlecase }}</p>
+                <button mat-raised-button (click)="navigateToHome()">
+                    Return to Home
+                </button>
+            </div>
+        }
+        
+        @else 
+        {
+            <div class="success-content">
+
+                <mat-icon class="success-icon">check_circle</mat-icon>
+                <h2>Thank You for Your Payment!</h2>
+                <p class="mat-body-1">You have successfully upgraded to PRO!</p>
+                
+                <mat-card class="info-card">
+                  <mat-card-content>
+                    <mat-icon>info</mat-icon>
+                    <p>To activate all your PRO features, please log in again.</p>
+                  </mat-card-content>
+                </mat-card>
+                
+                <div class="button-container">
+                  <button mat-raised-button (click)="logout()">
+                    Log out now to activate PRO features
+                  </button>
+                </div>
+
+              </div>
+        }
+        
+      </mat-card-content>
+    </mat-card>
+  </div>

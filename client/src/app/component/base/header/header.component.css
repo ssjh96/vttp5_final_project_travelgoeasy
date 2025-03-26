@@ -1,0 +1,190 @@
+/* Header Component Styles */
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+mat-toolbar {
+    background: linear-gradient(90deg, #0072ff 0%, #00c6ff 100%);
+    padding: 0;
+    height: 64px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 100%;
+}
+
+/* Logo Section */
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.logo-link:hover .logo-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0 12px;
+    height: 36px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    color: white;
+}
+
+.nav-link.active-link {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 25px;
+    font-weight: 500;
+}
+
+.nav-link mat-icon {
+    margin-right: 6px;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.link-text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Pro Button */
+.pro-button {
+    background-color: #ffc107;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    padding: 0 16px;
+    height: 36px;
+}
+
+.pro-button:hover {
+    background-color: #ffca28;
+    transform: translateY(-2px);
+}
+
+.pro-button mat-icon {
+    margin-right: 6px;
+}
+
+/* Badges */
+.badge {
+    margin-top: 23px;
+    display: flex;
+    align-items: center;
+}
+
+.pro-badge .mat-badge-content {
+    background-color: #ffc107;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+    font-size: 0.7rem;
+    padding: 8px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.free-badge .mat-badge-content {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    font-size: 0.7rem;
+    padding: 8px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+    .toolbar-container {
+        padding: 0 12px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-link {
+        padding: 0 8px;
+    }
+
+    .nav-link mat-icon {
+        margin-right: 2px;
+        font-size: 18px;
+        height: 18px;
+        width: 18px;
+    }
+
+    .link-text {
+        font-size: 0.8rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .badge {
+        margin-left: 5px;
+    }
+
+    .pro-badge .mat-badge-content,
+    .free-badge .mat-badge-content {
+        font-size: 0.6rem;
+        padding: 6px 6px;
+    }
+
+
+}

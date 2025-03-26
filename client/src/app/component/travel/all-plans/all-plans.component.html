@@ -1,0 +1,60 @@
+<div class="all-plans-container">
+    <div class="header-section">
+      <h1>Your Trips</h1>
+      <button mat-raised-button class="create-button" [routerLink]="['/create-plan']">
+        <mat-icon>add</mat-icon> Create New Trip
+      </button>
+    </div>
+  
+    @if (tripsList.length === 0) 
+    {
+        <div class="empty-state">
+            <mat-icon>flight</mat-icon>
+            <h2>No trips yet</h2>
+            <p>Start planning your first adventure by creating a new trip!</p>
+            <button mat-raised-button [routerLink]="['/create-plan']">Create Your First Trip</button>
+        </div>
+    }
+    @else 
+    {
+        <div class="trips-grid">
+            @for (trip of tripsList; let idx = $index; track idx) 
+            {
+                <mat-card class="trip-card">
+                    <div class="trip-destination-bg" 
+                    [ngStyle]="{'background-image':'url(' + getDestinationImage(trip.destination) + ')' }">
+                      <div class="trip-destination-overlay">
+                        <span class="destination-name">{{ trip.destination }}</span>
+                      </div>
+                    </div>
+                    
+                    <mat-card-content>
+                      <h2 class="trip-name">{{ trip.tripName }}</h2>
+                      
+                      <div class="trip-dates">
+                        <mat-icon>event</mat-icon>
+                        <span>{{ trip.startDate | date:'EEE, dd MMM yy' }} - {{ trip.endDate | date:'EEE, dd MMM yy' }}</span>
+                      </div>
+                      
+                      <div class="trip-companions" *ngIf="trip.tripMates">
+                        <mat-icon>people</mat-icon>
+                        <span>{{ getTripMatesCount(trip.tripMates) }} companions</span>
+                      </div>
+                    </mat-card-content>
+                    
+                    <mat-card-actions>
+                      <button mat-button (click)="onView(trip.tripId!)">
+                        <mat-icon>visibility</mat-icon> View
+                      </button>
+                      <button mat-button (click)="onView(trip.tripId!)">
+                        <mat-icon>edit</mat-icon> Edit
+                      </button>
+                      <button mat-button (click)="confirmDelete(trip)">
+                        <mat-icon>delete</mat-icon> Delete
+                      </button>
+                    </mat-card-actions>
+                  </mat-card>
+            }
+        </div>
+    }  
+</div>

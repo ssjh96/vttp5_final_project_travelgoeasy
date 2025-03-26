@@ -1,0 +1,148 @@
+<div class="create-plan-container">
+    <div class="create-plan-content">
+      <div class="form-header">
+        <button mat-icon-button [routerLink]="['/Home']" class="back-button">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>Create New Trip</h1>
+      </div>
+      
+      <form [formGroup]="tripForm" (ngSubmit)="onCreateTrip()">
+        <div class="form-stepper">
+          <div class="step active">
+            <div class="step-number">1</div>
+            <div class="step-label">Trip Details</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-label">Plan Itinerary</div>
+          </div>
+        </div>
+        
+        <!-- Trip Name -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Trip Name</mat-label>
+          <input matInput formControlName="tripName" placeholder="e.g. Japan Food Hunt, Graduation Trip, Climbing Mt Everest">
+          <mat-icon matSuffix>flight_takeoff</mat-icon>
+          @if (tripForm.get('tripName')?.invalid && tripForm.get('tripName')?.touched) 
+          {
+            <mat-error>
+              Please enter a trip name
+            </mat-error>
+          }
+        </mat-form-field>
+        
+        <!-- Destination -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Destination</mat-label>
+          <mat-select formControlName="destination">
+            <mat-option value="">-- Select a Country --</mat-option>
+            @for (country of countriesList$ | async; track country.code) 
+            {
+              <mat-option [value]="country.name">
+                {{ country.name }}
+              </mat-option>
+            }
+          </mat-select>
+          <mat-icon matSuffix>place</mat-icon>
+          @if (tripForm.get('destination')?.invalid && tripForm.get('destination')?.touched) 
+          {
+            <mat-error>
+              Please select a destination
+            </mat-error>
+          }
+        </mat-form-field>
+        
+        <!-- Date Range -->
+        <div class="date-range-container">
+          <!-- Start Date -->
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+            @if (tripForm.get('startDate')?.invalid && tripForm.get('startDate')?.touched) 
+            {
+              <mat-error>
+                Date must not be in the past
+              </mat-error>
+            }
+          </mat-form-field>
+          
+          <!-- End Date -->
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+            @if (tripForm.get('endDate')?.invalid && tripForm.get('endDate')?.touched) 
+            {
+              <mat-error>
+                Date must not be in the past
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        
+        <!-- Trip Duration Info -->
+        @if (tripDuration > 0) 
+        {
+          <div class="trip-duration">
+            <mat-icon>event_available</mat-icon>
+            <span>{{ tripDuration }} {{ tripDuration === 1 ? 'day' : 'days' }} trip</span>
+          </div>
+        }
+        
+        <!-- Trip Mates -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Invite Travel Companions (Optional)</mat-label>
+          <textarea matInput formControlName="tripMates" placeholder="example@gmail.com, example@outlook.com" rows="2"></textarea>
+          <mat-icon matSuffix>people</mat-icon>
+          <mat-hint>Enter email addresses, separated by commas</mat-hint>
+        </mat-form-field>
+        
+        <!-- Helpers -->
+        @if (showEmailHelper && hasInvalidEmails()) 
+        {
+          <div class="email-helper">
+            <mat-icon>warning</mat-icon>
+            <div class="helper-content">
+              <p>These emails appear to be invalid:</p>
+              <ul>
+                @for (email of invalidEmails; track $index) 
+                {
+                  <li>{{ email }}</li>
+                }
+              </ul>
+              <p>Please correct them or remove them to continue.</p>
+            </div>
+          </div>
+        }
+        
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button mat-stroked-button type="button" [routerLink]="['/Home']">
+            Cancel
+          </button>
+          <button mat-raised-button type="submit" [disabled]="tripForm.invalid || hasInvalidEmails()">
+            <mat-icon>add_circle</mat-icon> Create Trip
+          </button>
+        </div>
+      </form>
+      
+      <!-- Tips Section -->
+      <div class="travel-tips">
+        <div class="tip-header">
+          <mat-icon>lightbulb</mat-icon>
+          <h3>Travel Planning Tips</h3>
+        </div>
+        <ul>
+          <li>Name your trip something memorable and specific.</li>
+          <li>Check visa requirements for your destination before booking.</li>
+          <li>Consider the local weather and seasons when choosing dates.</li>
+          <li>Invite travel companions early to coordinate plans together.</li>
+        </ul>
+      </div>
+    </div>
+  </div>

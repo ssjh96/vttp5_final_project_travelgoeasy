@@ -1,0 +1,112 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 64px - 180px);
+    padding: 40px 20px;
+    background-color: #f5f7fa;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+mat-card-header {
+    background: linear-gradient(to right, #3ba9e1, #95ccec);
+    color: white;
+    padding: 30px 24px;
+    margin-bottom: 20px;
+}
+
+mat-card-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+mat-card-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+}
+
+mat-card-content {
+    padding: 0 24px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 24px;
+}
+
+.forgot-password a {
+    color: #1976d2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+.login-button-container {
+    margin-bottom: 24px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.login-button mat-icon {
+    margin-right: 8px;
+}
+
+mat-card-actions {
+    padding: 16px 24px;
+    border-top: 1px solid #eeeeee;
+}
+
+.register-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.register-link span {
+    color: #666;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        max-width: 100%;
+    }
+
+    mat-card-title {
+        font-size: 1.6rem !important;
+    }
+
+    mat-card-subtitle {
+        font-size: 1rem !important;
+    }
+}

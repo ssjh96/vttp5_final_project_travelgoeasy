@@ -1,0 +1,129 @@
+<div class="shared-itinerary-container">
+  @if (errorMessage) 
+  {
+    <div class="error-container">
+      <mat-icon class="error-icon">
+        error_outline
+      </mat-icon>
+
+      <h1>Unable to Load Itinerary</h1>
+
+      <p>
+        {{ errorMessage | titlecase }}
+      </p>
+
+      <a mat-raised-button [routerLink]="['/']">Back to Home</a>
+    </div>
+  }
+    
+  @else 
+  {
+    <div class="trip-header">
+      <div class="header-content">
+
+        <h1> {{ trip.tripName }} </h1>
+
+        <div class="trip-details">
+
+          <div class="detail">
+            <mat-icon>place</mat-icon>
+            {{ trip.destination }}
+          </div>
+
+          <div class="detail">
+            <mat-icon>event</mat-icon>
+            {{ trip.startDate | date: 'EEE, dd MMM yy' }} - {{ trip.endDate | date: 'EEE, dd MMM yy' }}
+          </div>
+
+          <div class="detail">
+            <mat-icon>people</mat-icon>
+            {{ getTripMatesCount(trip.tripMates) }} travel companions
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    @if (dayGroups.length > 0) 
+    {
+      
+      <mat-tab-group animationDuration="500ms" mat-align-tabs="center">
+        @for (dayGroup of dayGroups; track dayGroup.day)
+        {
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div class="tab-label">
+                <span class="day-number">Day {{ dayGroup.day }}</span>
+                <span class="day-date">{{ formatDayDate(trip.startDate, dayGroup.day - 1) }}</span>
+              </div>
+            </ng-template>
+            
+            <div class="day-content">
+              <div class="places-list">
+
+                @if (dayGroup.places.length > 0)
+                {
+
+                  @for (place of dayGroup.places; track place.orderIndex)
+                  {
+                    <mat-card class="place-card">
+                      <mat-card-content>
+                        <div class="place-order">
+                          {{ place.orderIndex + 1 }}
+                        </div>
+                        <div class="place-info">
+                          <h3>{{ place.placeName }}</h3>
+                          <p class="place-address">
+                            <mat-icon>location_on</mat-icon>
+                            {{ place.address }}
+                          </p>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  }
+                }
+
+                @else 
+                {
+                  <div class="empty-day">
+                    <mat-icon>info</mat-icon>
+                    <p>No places added for this day yet.</p>
+                  </div>
+                }
+
+              </div>
+            </div>
+          </mat-tab>
+        }
+
+      </mat-tab-group>
+    }
+
+    @else 
+    {
+      <div class="empty-itinerary">
+        <mat-icon>flight_takeoff</mat-icon>
+        <h2>Itinerary Coming Soon!</h2>
+        <p>The trip organizer is still planning this adventure. Check back later for updates!</p>
+      </div>
+    }
+      
+    <div class="itinerary-footer">
+      <div class="footer-content">
+        <h3>
+          This trip itinerary is shared with you via TravelGoEasy.
+        </h3>
+        <div class="footer-actions">
+          <a mat-button [routerLink]="['/']">
+            <mat-icon>home</mat-icon> Go to Home
+          </a>
+          <button mat-button (click)="copyShareLink()">
+            <mat-icon>share</mat-icon> Copy Share Link
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

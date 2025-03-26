@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title th:text="${subject}">TravelGoEasy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-header {
+            background: linear-gradient(135deg, #0072ff, #00c6ff);
+            padding: 30px;
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .brand-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-tagline {
+            margin: 5px 0 0;
+            font-weight: 300;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .email-content {
+            padding: 40px 30px;
+            line-height: 1.6;
+        }
+        
+        .greeting {
+            font-size: 22px;
+            font-weight: 500;
+            margin: 0 0 20px;
+            color: #1976d2;
+        }
+        
+        .message {
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .email-footer {
+            background-color: #f5f7fa;
+            padding: 30px;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+            border-top: 1px solid #eeeeee;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+
+        <div class="email-header">
+            <h1 class="brand-logo">TravelGoEasy</h1>
+            <p class="brand-tagline">Your journey, simplified</p>
+        </div>
+        
+        <div class="email-content">
+            <h2 class="greeting">Hello, <span th:text="${name}">Traveler</span>!</h2>
+
+            <div class="message">
+                <p th:text="${message}"></p>
+            </div>
+    
+            
+            <p>Safe travels,</p>
+            <p><strong>The TravelGoEasy Team</strong></p>
+        </div>
+
+        <div class="email-footer">
+            <p>If you have any questions, feel free to <a href="mailto:info@travelgoeasy.com" style="color: #1976d2;">contact us</a>.</p>
+            
+            <p class="copyright">&copy; 2025 TravelGoEasy. All rights reserved.</p>
+        </div>
+
+    </div>
+        
+</body>
+</html>

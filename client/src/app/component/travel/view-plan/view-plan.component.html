@@ -1,0 +1,156 @@
+<div class="container">
+
+  @if (isLoading) 
+  {
+    <div class="loading-container">
+      <mat-spinner diameter="60"></mat-spinner>
+      <p>Loading trip details...</p>
+    </div>
+  }
+  
+
+  @else if (errorMessage) 
+  {
+    <div class="error-container">
+      <mat-icon class="error-icon">error_outline</mat-icon>
+      <h3>{{ errorMessage }}</h3>
+      <button mat-raised-button (click)="navigateBack()">
+        <mat-icon>arrow_back</mat-icon> Back to All Trips
+      </button>
+    </div>
+  }
+  
+
+  @else 
+  {
+    <div class="view-plan-content">
+
+      <div class="actions-header">
+        <button mat-stroked-button (click)="navigateBack()" class="back-button">
+          <mat-icon>arrow_back</mat-icon> Back to Trips
+        </button>
+        
+        <div class="action-buttons">
+          <button mat-stroked-button (click)="shareTrip()" class="share-button">
+            <mat-icon>share</mat-icon> Share Trip
+          </button>
+        </div>
+      </div>
+      
+
+      <mat-card class="background-image-container" 
+        [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
+        
+        <mat-card-header>
+          <mat-card-title>{{ selectedTrip.tripName }}</mat-card-title>
+          <mat-card-subtitle>{{ selectedTrip.destination }}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <div class="trip-details-row">
+            <div class="trip-detail-chip">
+              <mat-icon>event</mat-icon>
+              <span>{{ selectedTrip.startDate | date:'EEEE, dd MMM yy' }} - {{ selectedTrip.endDate | date:'EEEE, dd MMM yy' }}</span>
+            </div>
+            
+            @if (tripDuration > 0) 
+            {
+              <div class="trip-detail-chip">
+                <mat-icon>schedule</mat-icon>
+                <span>{{ tripDuration }} {{ tripDuration === 1 ? 'day' : 'days' }}</span>
+              </div>
+            }
+            
+            @if (tripMatesArray.length > 0) 
+            {
+              <div class="trip-detail-chip" [matTooltip]="tripMatesArray.join(', ')">
+                <mat-icon>people</mat-icon>
+                <span>{{ tripMatesArray.length }} {{ tripMatesArray.length === 1 ? 'companion' : 'companions' }}</span>
+              </div>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+      
+
+      <mat-card class="trip-summary-card">
+        <mat-card-content>
+          <div class="summary-section">
+            <div class="summary-item">
+              <div class="summary-icon-container">
+                <mat-icon class="summary-icon">location_on</mat-icon>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Destination</div>
+                <div class="summary-value">{{ selectedTrip.destination }}</div>
+              </div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon-container">
+                <mat-icon class="summary-icon">calendar_today</mat-icon>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Dates</div>
+                <div class="summary-value">{{ selectedTrip.startDate | date:'MMM d' }} - {{ selectedTrip.endDate | date:'MMM d, y' }}</div>
+              </div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon-container">
+                <mat-icon class="summary-icon">schedule</mat-icon>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Duration</div>
+                <div class="summary-value">{{ tripDuration }} {{ tripDuration === 1 ? 'day' : 'days' }}</div>
+              </div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon-container">
+                <mat-icon class="summary-icon">people</mat-icon>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Travel Companions</div>
+                <div class="summary-value">
+                  
+                  @if (tripMatesArray.length > 0) 
+                  {
+                    <div class="companions-list">
+
+                      @for (email of tripMatesArray.slice(0, 3); let idx = $index; track idx) 
+                      {
+                        <div class="companion-email">{{ email }}</div>
+                      }
+
+                      @if (tripMatesArray.length > 3) 
+                      {
+                        <div class="companion-email">+{{ tripMatesArray.length - 3 }} more</div>
+                      }
+
+                    </div>
+                  } 
+                  
+                  @else 
+                  {
+                    <span>No companions added</span>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    
+
+      <div class="plan-content">
+        <div class="itinerary-section">
+          <app-itinerary></app-itinerary>
+        </div>
+        <div class="map-section">
+          <app-maps [selectedDestination]="selectedDestination"></app-maps>
+        </div>
+      </div>
+    </div>
+  }
+</div>

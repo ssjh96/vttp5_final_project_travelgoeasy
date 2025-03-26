@@ -1,0 +1,71 @@
+<header class="app-header">
+  <mat-toolbar>
+    <div class="toolbar-container">
+      <div class="logo-section">
+        <a class="logo-link" routerLink="/">
+          <span class="logo-text">TravelGoEasy</span>
+        </a>
+        
+        @if (isLoggedIn) 
+        {
+          @if (isPro) 
+          {
+            <div class="badge pro-badge" matBadge="PRO" matBadgeSize="small"></div>
+          } 
+          
+          @else 
+          {
+            <div class="badge free-badge" matBadge="FREE" matBadgeSize="small"></div>
+          }
+        }
+      </div>
+      
+      <span class="spacer"></span>
+      
+      <div class="nav-links">
+        @if (!isLoggedIn) 
+        {
+          <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+            <mat-icon>home</mat-icon>
+            <span class="link-text">Home</span>
+          </a>
+          <a mat-button routerLink="/Login" routerLinkActive="active-link" class="nav-link">
+            <mat-icon>login</mat-icon>
+            <span class="link-text">Login</span>
+          </a>
+        } 
+        
+        @else 
+        {
+          @if (!isPro) 
+          {
+            <a mat-raised-button routerLink="/checkout" class="pro-button">
+              <mat-icon>stars</mat-icon>
+              <span class="link-text">Get Pro</span>
+            </a>
+          }
+          
+          <a mat-button routerLink="/Home" routerLinkActive="active-link" class="nav-link">
+            <mat-icon>dashboard</mat-icon>
+            <span class="link-text">Dashboard</span>
+          </a>
+          
+          <a mat-button routerLink="/all-plans" routerLinkActive="active-link" class="nav-link">
+            <mat-icon>map</mat-icon>
+            <span class="link-text">My Trips</span>
+          </a>
+          
+          <a mat-button routerLink="/Profile" routerLinkActive="active-link" class="nav-link">
+            <mat-icon>person</mat-icon>
+            <span class="link-text">Profile</span>
+          </a>
+          
+          <button mat-button (click)="onLogout()" class="nav-link logout-button">
+            <mat-icon>exit_to_app</mat-icon>
+            <span class="link-text">Logout</span>
+          </button>
+        }
+      </div>
+    </div>
+  </mat-toolbar>
+</header>

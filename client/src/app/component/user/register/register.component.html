@@ -1,0 +1,84 @@
+<div class="register-container">
+
+    <mat-card class="register-card">
+      <mat-card-header>
+        <mat-card-title>Create an Account</mat-card-title>
+        <mat-card-subtitle>Join TravelGoEasy today</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <form [formGroup]="resgistrationForm" (ngSubmit)="onRegister()">
+          <div class="form-fields">
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" placeholder="Choose a username">
+              <mat-icon matSuffix>person</mat-icon>
+
+              @if (touchedAndInvalid('username')) 
+              {
+                <mat-error>
+                  Username must be at least 6 characters
+                </mat-error>
+              }
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email Address</mat-label>
+              <input matInput formControlName="email" type="email" placeholder="Your email address">
+              <mat-icon matSuffix>email</mat-icon>
+
+              @if (touchedAndInvalid('email')) 
+              {
+                <mat-error>
+                  Please enter a valid email address
+                </mat-error>
+              }
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password" placeholder="Create a password">
+              <mat-icon matSuffix>lock</mat-icon>
+
+              @if (touchedAndInvalid('password')) 
+              {
+                <mat-error>
+                  Password must be at least 8 characters
+                </mat-error>
+              }
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput formControlName="confirmPassword" type="password" placeholder="Confirm your password">
+              <mat-icon matSuffix>lock_check</mat-icon>
+
+              @if (resgistrationForm.hasError('mismatch')) 
+              {
+                <mat-error>
+                  Passwords do not match
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+          
+          
+          <div class="register-button-container">
+            <button mat-raised-button type="submit" [disabled]="resgistrationForm.invalid" class="register-button">
+              <mat-icon>person_add</mat-icon>
+              Create Account
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <div class="login-link">
+          <span>Already have an account?</span>
+          <a mat-button [routerLink]="['/Login']">Sign in</a>
+        </div>
+      </mat-card-actions>
+      
+    </mat-card>
+  </div>

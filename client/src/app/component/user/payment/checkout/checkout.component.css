@@ -1,0 +1,93 @@
+.checkout-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+mat-card-title {
+  margin: 20px;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}
+
+.price-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.price-header {
+  font-size: 2.5rem;
+  color: #00aeff;
+  margin: 0;
+}
+
+.price-subtitle {
+  color: #7f8586fc;
+  margin-top: 0;
+}
+
+.benefits-header {
+  margin: 20px 0 10px;
+}
+
+.faq-panel {
+  margin-top: 20px;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px;
+}
+
+mat-card-actions button {
+  flex: 1;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  color: #7f8586fc;
+  border-radius: 0 0 4px 4px;
+}
+
+button mat-icon {
+  margin-right: 8px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+  font-size: 0.8em;
+}
+
+.discounted-price {
+  color: #4caf50;
+}
+
+.discount-card {
+  display: flex;
+  align-items: center;
+  background-color: #e8f5e9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.discount-card mat-icon {
+  margin-right: 10px;
+}

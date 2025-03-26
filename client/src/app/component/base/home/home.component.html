@@ -1,0 +1,73 @@
+<div class="home-container">
+    <div class="welcome-section">
+      <div class="welcome-content">
+        <h1>Welcome back, <span class="username">{{ username | titlecase }}!</span></h1>
+        <p class="welcome-message">Ready to plan your next adventure? Create a new travel plan or view your existing trips below.</p>
+      </div>
+    </div>
+  
+    <div class="action-cards">
+      <mat-card class="action-card create-card" (click)="onCreateTravelPlan()">
+        <mat-card-content>
+          <div class="card-icon">
+            <mat-icon>add_circle</mat-icon>
+          </div>
+          <h2>Create Travel Plan</h2>
+          <p>Start planning your next adventure with a new itinerary</p>
+          <button mat-raised-button>Get Started</button>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="action-card view-card" (click)="onViewTravelPlans()">
+        <mat-card-content>
+          <div class="card-icon">
+            <mat-icon>map</mat-icon>
+          </div>
+          <h2>View Your Plans</h2>
+          <p>Access and manage your existing travel itineraries</p>
+          <button mat-raised-button>View Plans</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="quick-tips">
+      <h2>Quick Travel Tips</h2>
+      <div class="tips-container">
+        <div class="tip">
+          <mat-icon>lightbulb</mat-icon>
+          <div class="tip-content">
+            <h3>Use AI Recommendations</h3>
+            <p>Let our AI suggest the perfect attractions for your destination.</p>
+          </div>
+        </div>
+        <div class="tip">
+          <mat-icon>people</mat-icon>
+          <div class="tip-content">
+            <h3>Invite Travel Companions</h3>
+            <p>Share your itinerary with friends and family by adding their emails.</p>
+          </div>
+        </div>
+        <div class="tip">
+          <mat-icon>smartphone</mat-icon>
+          <div class="tip-content">
+            <h3>Access Plans Anywhere</h3>
+            <p>Your travel plans are available on all your devices, anytime.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="upgrade-promo" *ngIf="!isPro">
+      <div class="promo-content">
+        <div class="promo-icon">
+          <mat-icon>stars</mat-icon>
+        </div>
+        <div class="promo-text">
+          <h2>Upgrade to PRO</h2>
+          <p>Unlock AI-powered travel recommendations, unlimited trip planning, and more!</p>
+        </div>
+        <button mat-raised-button [routerLink]="['/checkout']">Upgrade Now</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,31 @@
+<div class="not-found-container">
+    <div class="not-found-content">
+      
+    <div class="plane">
+        <img  src="https://images.vexels.com/media/users/3/145795/isolated/preview/05cd33059a006bf49006097af4ccba98-plane-in-flight-by-vexels.png" />
+    </div>
+
+        <div class="not-found-message">
+            <h1>404: Page Not Found</h1>
+            <p>Looks like you've ventured into uncharted territory. The page you're looking for doesn't exist or has been moved.</p>
+
+            <div class="action-buttons">
+                <button mat-raised-button routerLink="/">
+                <mat-icon>home</mat-icon> Back to Home
+                </button>
+                <button mat-stroked-button routerLink="/all-plans">
+                <mat-icon>map</mat-icon> My Travel Plans
+                </button>
+            </div>
+        
+            <div class="navigation-help">
+                <h3>Looking for something?</h3>
+                <div class="help-links">
+                    <a [routerLink]="['/create-plan']">Create a new travel plan</a>
+                    <a [routerLink]="['/Profile']">View your profile</a>
+                    <a [routerLink]="['/checkout']">Upgrade to PRO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

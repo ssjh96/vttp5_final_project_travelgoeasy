@@ -1,0 +1,79 @@
+<div class="itinerary-container">
+
+    <!-- Tabs -->
+    <mat-tab-group [(selectedIndex)]="selectedDayIndex" (selectedIndexChange)="onDaySelected($event)" animationDuration="200ms">
+        @for (day of days; let idx = $index; track idx) 
+        {
+            <mat-tab [label]="'Day ' + day"></mat-tab>
+        }
+    </mat-tab-group>
+  
+
+    <!-- day header -->
+    <div class="day-header">
+        <div class="header-row">
+          <button mat-icon-button [routerLink]="['/all-plans']" class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <h2>{{ getFormattedDate(selectedDay) }}</h2>
+        </div>
+    </div>
+  
+    <!-- search and add places -->
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search for a place to add</mat-label>
+      <input matInput id="autocomplete" type="text">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  
+    <!-- Places list for selected day -->
+    <div class="places-list">
+      <!-- if no places added state -->
+       @if (getPlacesForDay(selectedDay).length === 0) 
+       {
+        <mat-card class="empty-list">
+            <mat-card-content>
+              <mat-icon class="empty-icon">place</mat-icon>
+              <p>No places added for this day. Search above to add places.</p>
+            </mat-card-content>
+          </mat-card>
+       }
+       <!-- show places list -->
+       @else 
+       {
+            @for (place of getPlacesForDay(selectedDay); let idx = $index; track idx) 
+            {
+                <mat-card class="place-item">
+                    <mat-card-content>
+                      <div class="place-content">
+                        <div class="place-details">
+                          <div class="place-name">{{ place.name }}</div>
+                          <div class="place-address">{{ place.address }}</div>
+                        </div>
+                        <button mat-icon-button (click)="removePlace(place)" class="remove-button">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+            }
+
+       }  
+    </div>
+    <!-- <mat-divider></mat-divider> -->
+    
+    <div class="action-buttons">
+
+        <button mat-raised-button (click)="generateItinerary()" [disabled]="isGenerating" class="generate-button">
+            <mat-icon>auto_awesome</mat-icon>
+            {{ isGenerating ? 'Generating...' : 'Generate Itinerary' }}
+        </button>
+
+        <button mat-raised-button (click)="saveItinerary()" class="save-button">
+            <mat-icon>save</mat-icon>
+            Save Itinerary
+        </button>
+
+    </div>
+    
+</div>

@@ -1,0 +1,160 @@
+.footer {
+  background: linear-gradient(to right, #049ff9, #72cfe9);
+  color: #fff;
+  padding: 60px 0 20px;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 300px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.footer-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #fff;
+}
+
+.about p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.contact span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.contact i {
+  margin-right: 10px;
+}
+
+.links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.links ul li {
+  margin-bottom: 15px;
+}
+
+.links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: padding-left 0.3s;
+}
+
+.links ul li a:hover {
+  padding-left: 10px;
+}
+
+.links ul li a i {
+  margin-right: 10px;
+}
+
+.contact-form p {
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.newsletter-form button {
+  padding: 10px 15px;
+  background: rgba(0,100,200);
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.newsletter-form button:hover {
+  background: #049ff9;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icons {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #fff;
+  color: #0072ff;
+  transform: translateY(-5px);
+}
+
+.footer-bottom p {
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  
+  .footer-section {
+    margin-bottom: 30px;
+  }
+  
+  .social-icons {
+    margin-top: 20px;
+  }
+}

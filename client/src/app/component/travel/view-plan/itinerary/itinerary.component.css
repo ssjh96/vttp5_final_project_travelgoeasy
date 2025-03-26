@@ -1,0 +1,101 @@
+.itinerary-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-button {
+  color: rgb(62, 124, 194);
+}
+
+.day-header {
+  padding: 16px 20px;
+}
+
+.day-header h2 {
+  font-weight: bold;
+}
+
+.search-field {
+  margin: 0 16px;
+}
+
+.places-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+}
+
+.empty-list {
+  text-align: center;
+  padding: 32px 16px;
+  border: 1px dashed rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  margin-bottom: 16px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.place-item {
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.place-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.place-details {
+  flex: 1;
+}
+
+.place-name {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.place-address {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.action-buttons {
+  padding: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 12px;
+}
+
+.generate-button {
+  flex: 1;
+  background-color: gold;
+  color: white;
+}
+
+.save-button {
+  flex: 1;
+}
+
+/* Button states */
+.generate-button[disabled] {
+  opacity: 0.7;
+}
+
+.generate-button mat-icon,
+.save-button mat-icon {
+  margin-right: 8px;
+}

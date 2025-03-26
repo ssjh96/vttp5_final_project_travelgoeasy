@@ -1,0 +1,99 @@
+<div class="checkout-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Upgrade to TravelGoEasy PRO</mat-card-title>
+    </mat-card-header>
+  
+  
+    <mat-card-content>
+      @if(errorMessage)
+      {
+          <div class="error-message">
+              {{errorMessage}}
+          </div>
+      }
+
+      <!-- <div class="price-section">
+        <h2 class="price-header">S$9.99</h2>
+        <p class="price-subtitle">One-time payment, lifetime access</p>
+      </div> -->
+      <div class="price-section">
+        <h2 class="price-header">
+          @if(useVisaDiscount) 
+          {
+            <span class="original-price">{{originalPrice}}</span>
+            <span class="discounted-price">{{discountedPrice}}</span>
+          }
+          @else 
+          {
+            {{originalPrice}}
+          }
+        </h2>
+        
+        <p class="price-subtitle">One-time payment, lifetime access</p>
+        
+        <mat-checkbox [checked]="useVisaDiscount" (change)="toggleVisaDiscount()">
+          Use Visa Card (25% Discount)
+        </mat-checkbox>
+        
+        @if(useVisaDiscount) 
+        {
+          <div class="discount-card">
+            <mat-icon>credit_card</mat-icon>
+            <p>Pay with any Visa card to get 25% off!</p>
+          </div>
+        }
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h3 class="benefits-header">PRO Benefits:</h3>
+      <mat-list>
+        @for (benefit of benefits; track $index) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>{{ benefit.icon }}</mat-icon>
+            <p matListItemTitle>{{ benefit.text }}</p>
+          </mat-list-item>
+        }
+      </mat-list>
+
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="faq-panel">
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Frequently Asked Questions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+            <strong>Is this a one-time fee?</strong> 
+            <p>Yes, you pay once and get lifetime access to all PRO features.</p>
+            <br>
+            <strong>Can I cancel?</strong> 
+            <p>Once purchased, PRO is non-refundable, but it is a one-time payment and you will not be charged again.</p>
+            <br>
+            <strong>When do I get access?</strong> 
+            <p>Immediately after payment. You'll need to log out and log back in once.</p>
+        
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="onCheckout()">
+        <mat-icon>credit_card</mat-icon> Upgrade Now
+      </button>
+      <button mat-raised-button [routerLink]="['/Home']">Maybe Later</button>
+    </mat-card-actions>
+    
+    <mat-card-footer>
+      <div class="footer-content">
+        <mat-icon>lock</mat-icon>
+        <p>Secured by Stripe</p>
+      </div>
+    </mat-card-footer>
+
+  </mat-card>
+</div>
